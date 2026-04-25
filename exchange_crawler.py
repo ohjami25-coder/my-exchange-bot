@@ -79,7 +79,7 @@ def upload_to_github(data):
             json.dump(data, f, indent=4, ensure_ascii=False)
         return
 
-    url = f"https://api.github.com/repos/{my-exchange-bot}/contents/{FILE_PATH}"
+    url = f"https://api.github.com/repos/{REPO_NAME}/contents/{FILE_PATH}"
     headers = {
         "Authorization": f"token {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
