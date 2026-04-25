@@ -1,0 +1,29 @@
+name: 30분마다 환율 자동 업데이트
+
+on:
+  schedule:
+    # 30분마다 실행 (UTC 기준 30분 단위)
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # 개발자가 직접 'Run workflow' 버튼으로 실행할 수 있게 함
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 코드 불러오기
+        uses: actions/checkout@v3
+
+      - name: 파이썬(Python 3.10) 설치
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 필요한 라이브러리 설치
+        run: |
+          pip install pandas requests selenium webdriver-manager
+
+      - name: 환율 크롤러 실행
+        env:
+          # Settings에서 등록한 GH_TOKEN을 파이썬 환경변수로 전달
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: python exchange_crawler.py
