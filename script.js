@@ -28,37 +28,45 @@ async function fetchExchangeData() {
             const statusClass = isMinus ? 'falling' : 'rising';
             const arrow = isMinus ? '▼' : '▲';
 
-            // 1. 네이버 금융 코드 및 URL 타입 매칭
             let naverCode = "";
-            let urlType = "exchange"; // 기본값 (국내 환율)
+            let urlType = "exchange"; // 기본값
 
-            if (item.name.includes("USD")) naverCode = "FX_USDKRW";
-            else if (item.name.includes("JPY")) naverCode = "FX_JPYKRW";
-            else if (item.name.includes("CNY")) naverCode = "FX_CNYKRW";
-            else if (item.name.includes("EUR") && item.name.includes("KRW")) naverCode = "FX_EURKRW";
+            // 매칭 로직 보강 (한글 이름과 영문 코드 모두 대응)
+            const name = item.name;
 
-            // --- 해외 환율 (exchangeWorld) 설정 ---
-            else if (item.name.includes("GBP/USD")) {
+            if (name.includes("USD") || name.includes("달러")) {
+                naverCode = "FX_USDKRW";
+            } else if (name.includes("JPY") || name.includes("엔")) {
+                naverCode = "FX_JPYKRW";
+            } else if (name.includes("CNY") || name.includes("위안")) {
+                naverCode = "FX_CNYKRW";
+            } else if ((name.includes("EUR") || name.includes("유로")) && (name.includes("KRW") || name.includes("원"))) {
+                naverCode = "FX_EURKRW";
+            } 
+            // --- 해외 환율 (exchangeWorld) ---
+            else if (name.includes("GBP") || name.includes("파운드")) {
                 naverCode = "GBPUSD";
                 urlType = "exchangeWorld";
-            }
-            else if (item.name.includes("EUR/USD")) {
+            } else if (name.includes("EUR/USD") || (name.includes("유로") && name.includes("달러"))) {
                 naverCode = "EURUSD";
                 urlType = "exchangeWorld";
             }
 
-            // 카드 요소 생성
             const card = document.createElement('div');
             card.className = `card ${statusClass}`;
             card.style.cursor = "pointer";
 
-            // 2. 조건에 따른 동적 URL 연결
             card.onclick = () => {
                 if (naverCode) {
                     const finalUrl = `https://m.stock.naver.com/marketindex/${urlType}/${naverCode}`;
                     window.open(finalUrl, '_blank');
+                } else {
+                    // 어떤 이름 때문에 안 넘어가는지 확인용 알림 (나중에 지우셔도 됩니다)
+                    console.log("매칭 실패 종목명:", name);
                 }
             };
+            
+            // ... (이하 동일)
 
             card.innerHTML = `
             <div class="name">${item.name}</div>
