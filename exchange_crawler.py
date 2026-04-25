@@ -23,7 +23,7 @@ import time
 # --- 설정 정보 (본인의 정보로 수정) ---
 # GitHub Actions 실행 시 환경 변수에서 토큰을 가져옵니다.
 GITHUB_TOKEN = os.environ.get('GH_TOKEN') 
-REPO_NAME = "본인의_깃허브_ID/my-exchange-bot" # 예: "hong-gildong/my-exchange-bot"
+REPO_NAME = "ohjami25-coder/my-exchange-bot" # 예: "hong-gildong/my-exchange-bot"
 FILE_PATH = "exchange.json"
 
 def get_exchange_data():
