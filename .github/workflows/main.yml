@@ -2,19 +2,22 @@ name: 30분마다 환율 자동 업데이트
 
 on:
   schedule:
-    # 30분마다 실행
     - cron: '*/30 * * * *'
-  workflow_dispatch: # 수동 실행 버튼
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 여기서부터 중요! 전체 작업(Job) 수준에서 환경 변수를 선언합니다.
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+
     steps:
       - name: 저장소 코드 불러오기
-        uses: actions/checkout@v4 # v3에서 v4로 업데이트
+        uses: actions/checkout@v4
 
       - name: 파이썬(Python 3.10) 설치
-        uses: actions/setup-python@v5 # v4에서 v5로 업데이트
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -25,6 +28,4 @@ jobs:
       - name: 환율 크롤러 실행
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          # 경고 메시지에서 권장한 대로 Node.js 24 사용을 명시적으로 허용
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
         run: python exchange_crawler.py
