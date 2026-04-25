@@ -1,5 +1,5 @@
 // 1. 설정 정보 (본인의 정보로 반드시 수정하세요)
-const GITHUB_ID = "ohjami25-coder"; 
+const GITHUB_ID = "ohjami25-coder";
 const REPO_NAME = "my-exchange-bot";
 const FILE_NAME = "exchange.json";
 
@@ -13,13 +13,13 @@ async function fetchExchangeData() {
     try {
         // 캐시 방지를 위해 URL 뒤에 타임스탬프를 붙여 최신 데이터를 가져옵니다.
         const response = await fetch(`${jsonUrl}?t=${new Date().getTime()}`);
-        
+
         if (!response.ok) {
             throw new Error('데이터를 불러오는 데 실패했습니다.');
         }
 
         const data = await response.json();
-        
+
         // 화면 초기화
         container.innerHTML = '';
 
@@ -28,19 +28,46 @@ async function fetchExchangeData() {
             const statusClass = isMinus ? 'falling' : 'rising';
             const arrow = isMinus ? '▼' : '▲';
 
+            // 1. 네이버 금융 코드 및 URL 타입 매칭
+            let naverCode = "";
+            let urlType = "exchange"; // 기본값 (국내 환율)
+
+            if (item.name.includes("USD")) naverCode = "FX_USDKRW";
+            else if (item.name.includes("JPY")) naverCode = "FX_JPYKRW";
+            else if (item.name.includes("EUR") && item.name.includes("KRW")) naverCode = "FX_EURKRW";
+
+            // --- 해외 환율 (exchangeWorld) 설정 ---
+            else if (item.name.includes("GBP/USD")) {
+                naverCode = "GBPUSD";
+                urlType = "exchangeWorld";
+            }
+            else if (item.name.includes("EUR/USD")) {
+                naverCode = "EURUSD";
+                urlType = "exchangeWorld";
+            }
+
             // 카드 요소 생성
             const card = document.createElement('div');
             card.className = `card ${statusClass}`;
-            
+            card.style.cursor = "pointer";
+
+            // 2. 조건에 따른 동적 URL 연결
+            card.onclick = () => {
+                if (naverCode) {
+                    const finalUrl = `https://m.stock.naver.com/marketindex/${urlType}/${naverCode}`;
+                    window.open(finalUrl, '_blank');
+                }
+            };
+
             card.innerHTML = `
-                <div class="name">${item.name}</div>
-                <div class="price">${item.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
-                <div class="change">
-                    ${arrow} ${Math.abs(item.change).toFixed(2)} (${item.ratio})
-                </div>
-                <div class="date">${item.date}</div>
-            `;
-            
+            <div class="name">${item.name}</div>
+            <div class="price">${item.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</div>
+            <div class="change">
+                ${arrow} ${Math.abs(item.change).toFixed(2)} (${item.ratio})
+            </div>
+            <div class="date">${item.date}</div>
+        `;
+
             container.appendChild(card);
         });
 
