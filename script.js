@@ -34,6 +34,7 @@ async function fetchExchangeData() {
 
             if (item.name.includes("USD")) naverCode = "FX_USDKRW";
             else if (item.name.includes("JPY")) naverCode = "FX_JPYKRW";
+            else if (item.name.includes("CNY")) naverCode = "FX_CNYKRW";
             else if (item.name.includes("EUR") && item.name.includes("KRW")) naverCode = "FX_EURKRW";
 
             // --- 해외 환율 (exchangeWorld) 설정 ---
