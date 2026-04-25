@@ -24,34 +24,36 @@ async function fetchExchangeData() {
         container.innerHTML = '';
 
         data.forEach(item => {
-            const isMinus = item.change < 0;
-            const statusClass = isMinus ? 'falling' : 'rising';
-            const arrow = isMinus ? '▼' : '▲';
-
-            let naverCode = "";
-            let urlType = "exchange"; // 기본값
-
-            // 매칭 로직 보강 (한글 이름과 영문 코드 모두 대응)
             const name = item.name;
-
-            if (name.includes("USD") || name.includes("달러")) {
-                naverCode = "FX_USDKRW";
-            } else if (name.includes("JPY") || name.includes("엔")) {
-                naverCode = "FX_JPYKRW";
-            } else if (name.includes("CNY") || name.includes("위안")) {
-                naverCode = "FX_CNYKRW";
-            } else if ((name.includes("EUR") || name.includes("유로")) && (name.includes("KRW") || name.includes("원"))) {
-                naverCode = "FX_EURKRW";
-            } 
-            // --- 해외 환율 (exchangeWorld) ---
-            else if (name.includes("GBP") || name.includes("파운드")) {
+            let naverCode = "";
+            let urlType = "exchange";
+        
+            // 1. 가장 구체적인 이름(해외 환율)부터 먼저 체크합니다.
+            if (name.includes("GBP") || name.includes("파운드")) {
                 naverCode = "GBPUSD";
                 urlType = "exchangeWorld";
-            } else if (name.includes("EUR/USD") || (name.includes("유로") && name.includes("달러"))) {
+            } 
+            else if (name.includes("EUR/USD") || (name.includes("유로") && name.includes("달러"))) {
                 naverCode = "EURUSD";
                 urlType = "exchangeWorld";
             }
-
+            // 2. 그 다음 국내 환율을 체크합니다.
+            else if (name.includes("JPY") || name.includes("엔")) {
+                naverCode = "FX_JPYKRW";
+            } 
+            else if (name.includes("CNY") || name.includes("위안")) {
+                naverCode = "FX_CNYKRW";
+            } 
+            else if (name.includes("EUR") || name.includes("유로")) {
+                // 위에서 '유로/달러'를 먼저 걸러냈으므로, 여기 남은 유로는 '유로/원'입니다.
+                naverCode = "FX_EURKRW";
+            } 
+            else if (name.includes("USD") || name.includes("달러")) {
+                // 위에서 '파운드/달러', '유로/달러'를 다 걸러냈으므로, 남은 달러는 '달러/원'입니다.
+                naverCode = "FX_USDKRW";
+            }
+        
+            // ... (이후 card 생성 및 onclick 로직은 동일)
             const card = document.createElement('div');
             card.className = `card ${statusClass}`;
             card.style.cursor = "pointer";
