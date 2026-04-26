@@ -84,7 +84,7 @@ function renderCards(data, containerId, type) {
                 <span class="change-val ${isUp ? 'up' : 'down'}">${Math.abs(item.change).toFixed(2)}</span>
                 <span class="ratio ${isUp ? 'up' : 'down'}">(${item.ratio})</span>
             </div>
-            <div class="card-date">Data Date: ${item.date}</div>
+            <div class="card-date">Date: ${item.date}</div>
         `;
         
         container.appendChild(card);
