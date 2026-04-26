@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>투자 전략 분석 보드 - 환율</title>
+    <title>Global Market Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 </head>
 <body>
-    <div id="app">
-        <header>
-            <h1>Global Market Dashboard</h1>
-            <div id="update-time"></div>
-        </header>
 
-        <main>
-            <h2 class="section-title">실시간 환율 (20분 간격)</h2>
-            <div id="exchange-container" class="card-grid"></div>
+    <header>
+        <h1>Global Market Dashboard</h1>
+        <div id="update-time">데이터를 불러오는 중...</div>
+    </header>
 
-            <hr class="section-divider">
-            <h2 class="section-title">주요국 10년물 국채 금리</h2>
-            <div id="interest-container" class="card-grid"></div>
-        </main>
+    <main>
+        <section>
+            <h2>실시간 환율 (20분 간격)</h2>
+            <div id="exchange-container" class="card-grid">
+                </div>
+        </section>
 
-        <footer>
-            <p>© 2026 투자 전략 분석 보드</p>
-        </footer>
-    </div>
+        <section>
+            <h2>주요국 10년물 국채 금리</h2>
+            <div id="interest-container" class="card-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Quantitative Strategy Board. All rights reserved.</p>
+        <p>본 데이터는 투자 참고용이며 실제 시장 가격과 차이가 있을 수 있습니다.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>

@@ -1,81 +1,114 @@
-/* 기본 스타일 초기화 및 배경 설정 */
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f0f2f5;
+/* 1. 기본 초기화 및 폰트 설정 */
+* {
     margin: 0;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 모든 요소를 가로 중앙으로 정렬 */
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* 타이틀 및 업데이트 시간 중앙 정렬 */
-h1 {
-    color: #1a1a1a;
-    margin-bottom: 5px;
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 전체 요소 수평 중앙 정렬 */
+}
+
+/* 2. 헤더 그라데이션 및 타이틀 정렬 (요청 1, 3, 6 반영) */
+header {
+    width: 100%;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #059669 0%, #2563eb 100%); /* 초록-파랑 그라데이션 */
+    color: white;
     text-align: center;
-    font-size: 1.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
 }
 
 #update-time {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 40px;
-    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.9;
 }
 
-/* 카드 그리드: max-width를 조절하여 너무 넓어지지 않게 설정 */
+/* 3. 섹션 타이틀 중앙 정렬 (요청 3, 6 반영) */
+h2 {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0 25px;
+    font-size: 1.5rem;
+    color: #334155;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #3b82f6;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* 4. 카드 그리드 레이아웃 (요청 1 반영 - max-width 최적화) */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    width: 100%;
-    max-width: 900px; /* 대시보드 전체 폭 제한 */
+    width: 95%;
+    max-width: 1100px; /* 너무 넓지 않게 설정 */
     margin: 0 auto;
+    padding: 0 10px;
 }
 
-/* 카드 기본 스타일 */
+/* 5. 카드 디자인 및 링크 설정 (요청 5, 8 반영) */
 .card {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s ease;
-    border-top: 6px solid #dfe4ea; /* 기본 상단 테두리 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 6px solid #e2e8f0; /* 기본 상단 테두리 */
+    position: relative;
+    cursor: pointer;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* 상방/하방 테두리 색상 분기 */
-.card.up {
-    border-top-color: #ff4d4f; /* 상승 시 빨간색 테두리 */
-}
+/* 6. 상방/하방 테두리 색상 (요청 반영) */
+.card.up { border-top-color: #ef4444; } /* 상승 시 빨강 */
+.card.down { border-top-color: #3b82f6; } /* 하락 시 파랑 */
 
-.card.down {
-    border-top-color: #1890ff; /* 하락 시 파란색 테두리 */
-}
-
-/* 카드 헤더: 종목명 */
+/* 7. 카드 내부 텍스트 스타일 */
 .card-header {
-    font-size: 1rem;
-    color: #4b4b4b;
+    font-size: 1.05rem;
     font-weight: 700;
+    color: #475569;
     margin-bottom: 12px;
 }
 
-/* 가격 표시 */
 .price {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    color: #2d3436;
+    color: #0f172a;
     margin-bottom: 8px;
 }
 
-/* 하단 등락폭 및 퍼센트 정보 */
 .change-info {
     display: flex;
     align-items: center;
@@ -84,29 +117,37 @@ h1 {
     font-weight: 600;
 }
 
-/* 색상 공통 클래스 */
-.up { color: #cf1322; }
-.down { color: #096dd9; }
-
-/* 단위 및 보조 텍스트 */
-.unit {
-    font-size: 0.9rem;
-    margin-left: 2px;
-    color: #636e72;
+/* 8. 카드 맨 밑 날짜 데이터 (요청 4, 7 반영) */
+.card-date {
+    margin-top: auto; /* 상단 요소들과 간격을 벌려 맨 아래로 배치 */
+    padding-top: 15px;
+    border-top: 1px dashed #e2e8f0;
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
 }
 
-.ratio {
+/* 9. 푸터 중앙 정렬 (요청 9 반영) */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 60px 20px;
+    color: #94a3b8;
     font-size: 0.85rem;
-    margin-left: 2px;
+    background-color: transparent;
 }
+
+/* 유틸리티 색상 */
+.up { color: #dc2626; }
+.down { color: #2563eb; }
 
 /* 모바일 최적화 */
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     .card-grid {
-        grid-template-columns: 1fr 1fr; /* 모바일에선 2열로 표시 */
-        gap: 10px;
+        grid-template-columns: repeat(2, 1fr); /* 모바일은 2열 */
+        gap: 12px;
     }
-    .price {
-        font-size: 1.3rem;
-    }
+    header h1 { font-size: 1.6rem; }
+    .price { font-size: 1.4rem; }
 }
