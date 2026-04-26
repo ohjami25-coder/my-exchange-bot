@@ -45,7 +45,8 @@ async function updateDashboard() {
         // 2. 헤더의 업데이트 시간 표시 (데이터 날짜 + 현재 시스템 시:분)
         const now = new Date();
         const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-        document.getElementById('update-time').innerText = `Last Updated: ${exData[0].date} ${timeStr}`;
+        document.getElementById('update-time').innerText = `Last Updated: ${timeStr}`;
+        // document.getElementById('update-time').innerText = `Last Updated: ${exData[0].date} ${timeStr}`;
 
     } catch (e) {
         console.error("Dashboard Error:", e);
