@@ -1,133 +1,112 @@
-/* 1. 기본 초기화 및 폰트 설정 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* 기본 스타일 초기화 및 배경 설정 */
 body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: #f0f2f5;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* 2. 헤더 디자인 */
-header {
-    /* 기존 1a2a6c 조합 대신 아래의 네온/민트 조합으로 변경 */
-    background: linear-gradient(135deg, #339900, #33CC00, #33FFCC);
-    color: white;
-    padding: 2rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-bottom: 3px solid #33FF66; /* 하단에 얇은 민트색 라인 추가 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 추가 */
-}
-
-header h1 {
     margin: 0;
-    font-size: 2rem;
-    /* 글자가 더 잘 보이도록 그림자 추가 */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-header p {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-/* 섹션 타이틀 스타일 */
-.section-title {
-    margin: 2rem 0 1rem 1.5rem;
-    font-size: 1.4rem;
-    color: #333;
-    border-left: 5px solid #33CC00; /* 헤더와 맞춘 그린 포인트 */
-    padding-left: 10px;
-}
-
-/* 구분선 스타일 */
-.section-divider {
-    border: 0;
-    height: 1px;
-    background: #eee;
-    margin: 3rem 1.5rem 1rem 1.5rem;
-}
-
-/* 3. 카드 그리드 레이아웃 (모바일 대응) */
-.card-grid {
-    display: grid;
-    /* auto-fill보다는 auto-fit이 카드가 적을 때 더 예쁘게 채워집니다 */
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-    
-    /* [수정] 800px은 너무 좁을 수 있으니 1200px로 넓히고 중앙 정렬 */
-    max-width: 1200px;
-    margin: 0 auto; 
-    
-    padding: 1.5rem; /* 위쪽 여백은 아까 추가한 섹션 타이틀에서 조절하는 게 더 깔끔합니다 */
-}
-
-/* 4. 개별 카드 디자인 */
-.card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
-    border-top: 6px solid #ccc; /* 기본 테두리 */
+    align-items: center; /* 모든 요소를 가로 중앙으로 정렬 */
 }
 
-.card:active {
-    transform: scale(0.98); /* 터치 시 살짝 눌리는 효과 */
+/* 타이틀 및 업데이트 시간 중앙 정렬 */
+h1 {
+    color: #1a1a1a;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 1.8rem;
 }
 
-/* 5. 상승/하락에 따른 컬러 코드 */
-.card.rising { border-top-color: #f04452; }  /* 상승: 빨간색 */
-.card.falling { border-top-color: #3182f6; } /* 하락: 파란색 */
-
-.name {
-    font-size: 14px;
+#update-time {
+    font-size: 0.9rem;
     color: #666;
-    font-weight: 600;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
+/* 카드 그리드: max-width를 조절하여 너무 넓어지지 않게 설정 */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 900px; /* 대시보드 전체 폭 제한 */
+    margin: 0 auto;
+}
+
+/* 카드 기본 스타일 */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+    border-top: 6px solid #dfe4ea; /* 기본 상단 테두리 */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* 상방/하방 테두리 색상 분기 */
+.card.up {
+    border-top-color: #ff4d4f; /* 상승 시 빨간색 테두리 */
+}
+
+.card.down {
+    border-top-color: #1890ff; /* 하락 시 파란색 테두리 */
+}
+
+/* 카드 헤더: 종목명 */
+.card-header {
+    font-size: 1rem;
+    color: #4b4b4b;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+/* 가격 표시 */
 .price {
-    font-size: 22px;
+    font-size: 1.6rem;
     font-weight: 800;
-    margin: 10px 0;
-    color: #111;
+    color: #2d3436;
+    margin-bottom: 8px;
 }
 
-.change {
-    font-size: 14px;
+/* 하단 등락폭 및 퍼센트 정보 */
+.change-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
     font-weight: 600;
 }
 
-.rising .change { color: #f04452; }
-.falling .change { color: #3182f6; }
+/* 색상 공통 클래스 */
+.up { color: #cf1322; }
+.down { color: #096dd9; }
 
-.date {
-    font-size: 11px;
-    color: #999;
-    margin-top: 10px;
-    text-align: right;
+/* 단위 및 보조 텍스트 */
+.unit {
+    font-size: 0.9rem;
+    margin-left: 2px;
+    color: #636e72;
 }
 
-/* 6. 기타 요소 */
-footer {
-    text-align: center;
-    padding: 40px 0;
-    font-size: 12px;
-    color: #aaa;
+.ratio {
+    font-size: 0.85rem;
+    margin-left: 2px;
 }
 
-.loading-msg {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 50px;
-    color: #666;
+/* 모바일 최적화 */
+@media (max-width: 600px) {
+    .card-grid {
+        grid-template-columns: 1fr 1fr; /* 모바일에선 2열로 표시 */
+        gap: 10px;
+    }
+    .price {
+        font-size: 1.3rem;
+    }
 }
-
