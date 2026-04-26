@@ -21,6 +21,7 @@ header {
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border-bottom: 3px solid #33FF66; /* 하단에 얇은 민트색 라인 추가 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 추가 */
 }
 
 header h1 {
@@ -43,6 +44,7 @@ header p {
     padding: 0 15px;
     max-width: 800px;
     margin: 0 auto;
+    padding: 2.5rem 1.5rem; /* 위아래 2.5rem, 좌우 1.5rem 여백 */
 }
 
 /* 4. 개별 카드 디자인 */
