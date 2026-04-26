@@ -14,18 +14,20 @@ body {
 
 /* 2. 헤더 디자인 */
 header {
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    /* 기존 1a2a6c 조합 대신 아래의 네온/민트 조합으로 변경 */
+    background: linear-gradient(135deg, #339900, #33CC00, #33FFCC);
     color: white;
-    padding: 30px 20px;
+    padding: 2rem 1rem;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid #33FF66; /* 하단에 얇은 민트색 라인 추가 */
 }
 
 header h1 {
-    font-size: 24px;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
+    margin: 0;
+    font-size: 2rem;
+    /* 글자가 더 잘 보이도록 그림자 추가 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 header p {
