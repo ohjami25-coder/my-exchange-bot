@@ -36,15 +36,35 @@ header p {
     opacity: 0.9;
 }
 
+/* 섹션 타이틀 스타일 */
+.section-title {
+    margin: 2rem 0 1rem 1.5rem;
+    font-size: 1.4rem;
+    color: #333;
+    border-left: 5px solid #33CC00; /* 헤더와 맞춘 그린 포인트 */
+    padding-left: 10px;
+}
+
+/* 구분선 스타일 */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #eee;
+    margin: 3rem 1.5rem 1rem 1.5rem;
+}
+
 /* 3. 카드 그리드 레이아웃 (모바일 대응) */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    /* auto-fill보다는 auto-fit이 카드가 적을 때 더 예쁘게 채워집니다 */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
-    padding: 0 15px;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2.5rem 1.5rem; /* 위아래 2.5rem, 좌우 1.5rem 여백 */
+    
+    /* [수정] 800px은 너무 좁을 수 있으니 1200px로 넓히고 중앙 정렬 */
+    max-width: 1200px;
+    margin: 0 auto; 
+    
+    padding: 1.5rem; /* 위쪽 여백은 아까 추가한 섹션 타이틀에서 조절하는 게 더 깔끔합니다 */
 }
 
 /* 4. 개별 카드 디자인 */
@@ -110,3 +130,4 @@ footer {
     padding: 50px;
     color: #666;
 }
+

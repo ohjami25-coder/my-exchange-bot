@@ -2,7 +2,7 @@ name: 30분마다 환율 자동 업데이트
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/20 * * * *'
   workflow_dispatch:
 
 jobs:

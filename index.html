@@ -10,16 +10,17 @@
 <body>
     <div id="app">
         <header>
-            <div class="header-content">
-                <h1>Market Index</h1>
-                <p id="update-time">데이터 로딩 중...</p>
-            </div>
+            <h1>Global Market Dashboard</h1>
+            <div id="update-time"></div>
         </header>
 
         <main>
-            <div id="card-container" class="card-grid">
-                <div class="loading-msg">데이터를 불러오는 중입니다...</div>
-            </div>
+            <h2 class="section-title">실시간 환율 (20분 간격)</h2>
+            <div id="exchange-container" class="card-grid"></div>
+
+            <hr class="section-divider">
+            <h2 class="section-title">주요국 10년물 국채 금리</h2>
+            <div id="interest-container" class="card-grid"></div>
         </main>
 
         <footer>
@@ -29,4 +30,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

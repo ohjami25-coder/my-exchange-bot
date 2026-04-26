@@ -1,3 +1,4 @@
+
 import os
 import requests
 import json
@@ -113,3 +114,4 @@ if __name__ == "__main__":
         upload_to_github(data_list)
     else:
         print("데이터를 가져오지 못했습니다.")
+
