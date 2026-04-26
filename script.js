@@ -8,16 +8,18 @@ const REPO_NAME = "my-exchange-bot";
 
 // 5, 8. 네이버 금융 링크 매핑 (종목명 기준 상세 페이지 연결)
 const NAVER_LINKS = {
-    "미국 USD": "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_USDKRW",
-    "유럽 EUR": "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_EURKRW",
-    "일본 JPY": "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_JPYKRW",
-    "중국 CNY": "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_CNYKRW",
-    "유로/달러": "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_EURUSD",
-    "영국 파운드/달러": "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_GBPUSD",
-    "미국 국채 10년": "https://finance.naver.com/marketindex/worldInterestDetail.naver?marketindexCd=IRR_TNOTE&fdtc=2",
-    "한국 국채 10년": "https://finance.naver.com/marketindex/interestDetail.naver?marketindexCd=IRR_GOVT0300",
-    "일본 국채 10년": "https://finance.naver.com/marketindex/worldInterestDetail.naver?marketindexCd=IRR_JGB&fdtc=2",
-    "독일 국채 10년": "https://finance.naver.com/marketindex/worldInterestDetail.naver?marketindexCd=IRR_BUND&fdtc=2"
+    "미국 USD": "https://m.stock.naver.com/marketindex/exchange/FX_USDKRW",
+    "유럽 EUR": "https://m.stock.naver.com/marketindex/exchange/FX_EURKRW",
+    "일본 JPY": "https://m.stock.naver.com/marketindex/exchange/FX_JPYKRW",
+    "중국 CNY": "https://m.stock.naver.com/marketindex/exchange/FX_CNYKRW",
+
+    "유로/달러": "https://m.stock.naver.com/marketindex/exchangeWorld/EURUSD",
+    "파운드/달러": "https://m.stock.naver.com/marketindex/exchangeWorld/GBPUSD",
+
+    "미국 국채 10년": "https://m.stock.naver.com/marketindex/bond/US10YT=RR",
+    "한국 국채 10년": "https://m.stock.naver.com/marketindex/bond/KR10YT=RR",
+    "일본 국채 10년": "https://m.stock.naver.com/marketindex/bond/JP10YT=RR",
+    "독일 국채 10년": "https://m.stock.naver.com/marketindex/bond/DE10YT=RR"
 };
 
 async function updateDashboard() {
