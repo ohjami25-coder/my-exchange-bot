@@ -65,8 +65,8 @@ def get_exchange_data():
                 date = li.find_element(By.CSS_SELECTOR, "span[class*='time']").text.replace('.', '').strip()
 
                 exchange_data.append({
-                    'name': name, 'price': price, 'change': change_val, 'ratio': ratio, 'date': datetime.now().strftime("%Y%m%d %H:%M")
-                    # 'name': name, 'price': price, 'change': change_val, 'ratio': ratio, 'date': date # datetime.now().strftime("%Y%m%d %H:%M")
+                    'name': name, 'price': price, 'change': change_val, 'ratio': ratio, 'date': datetime.now().strftime("%Y-%m-%d %H:%M")
+                    # 'name': name, 'price': price, 'change': change_val, 'ratio': ratio, 'date': date 
                 })
             except: continue
     finally:
