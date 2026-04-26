@@ -14,7 +14,7 @@ const NAVER_LINKS = {
     "중국 CNY": "https://m.stock.naver.com/marketindex/exchange/FX_CNYKRW",
 
     "유로/달러": "https://m.stock.naver.com/marketindex/exchangeWorld/EURUSD",
-    "파운드/달러": "https://m.stock.naver.com/marketindex/exchangeWorld/GBPUSD",
+    "영국 파운드/달러": "https://m.stock.naver.com/marketindex/exchangeWorld/GBPUSD",
 
     "미국 국채 10년": "https://m.stock.naver.com/marketindex/bond/US10YT=RR",
     "한국 국채 10년": "https://m.stock.naver.com/marketindex/bond/KR10YT=RR",
