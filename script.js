@@ -91,5 +91,13 @@ function renderCards(data, containerId, type) {
     });
 }
 
+// 1. 페이지 뼈대가 완성되면 첫 번째 업데이트 실행
+document.addEventListener('DOMContentLoaded', () => {
+    updateDashboard(); // 처음 한 번 실행
+    
+    // 2. 그 후 1분(60,000ms)마다 자동으로 반복 실행
+    setInterval(updateDashboard, 60000);
+});
+
 // 페이지 로드 시 대시보드 업데이트 실행
-document.addEventListener('DOMContentLoaded', updateDashboard);
+//document.addEventListener('DOMContentLoaded', updateDashboard);
