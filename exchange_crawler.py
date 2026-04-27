@@ -54,6 +54,7 @@ def get_exchange_data():
                 
                 name = li.find_element(By.CSS_SELECTOR, "strong[class*='name']").text.strip()
                 price = float(li.find_element(By.CSS_SELECTOR, "span[class*='price']").text.replace(',', ''))
+                print(f"현재 네이버에서 긁어온 가격: {price}") #M: 이 로그가 깃허브 Actions 화면에 찍힙니다.
                 
                 fluct_area = li.find_element(By.CSS_SELECTOR, "div[class*='Fluctuation_article']")
                 is_falling = "FALLING" in fluct_area.get_attribute("class")
