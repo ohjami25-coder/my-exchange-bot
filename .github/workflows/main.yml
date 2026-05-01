@@ -35,6 +35,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: python exchange_crawler.py
 
+      - name: 금리 크롤러 실행  # 이 부분을 추가해야 합니다!
+        run: python interest_crawler.py
+
       - name: Commit and push if changed
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
