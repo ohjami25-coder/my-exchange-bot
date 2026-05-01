@@ -43,5 +43,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git add .
-          git commit -m "Update data" || exit 0
+          # 아래 줄들을 기존 코드에 맞춰 수정/추가하세요
+          git commit -m "Update data" || echo "No changes to commit"
+          git pull --rebase origin main  # <-- 이 줄이 핵심입니다! 최신 상태를 먼저 가져옵니다.
           git push
